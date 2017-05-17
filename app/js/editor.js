@@ -47,7 +47,8 @@ amdRequire(['vs/editor/editor.main'], function () {
 
             var newData = JSON.parse(data);
             for(let i = 0; i < newData.length; i += 1) {
-              var data2 = '[' + len + ']: ' + newData[i].value;
+              var data2 = '[' + len + ']: ' + newData[i];
+              len += 1;
               var li = document.createElement("li");
               li.appendChild(document.createTextNode(data2));
               ul.appendChild(li);

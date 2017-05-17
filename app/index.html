@@ -7,7 +7,7 @@
     <!-- Stylesheets -->
 
     <link rel="stylesheet" href="https://cdn.rawgit.com/andrewcourtice/vuetiful/46294dcb0852e2f13324f186908aa7e62251f7aa/dist/components/app.style.css">
-    <link rel="stylesheet" href="./css/photon.css">
+    <link rel="stylesheet" href="./css/photon-data.css">
     <!-- Javascript -->
     <!-- <script src="js/menu.js" charset="utf-8"></script> -->
     <script src="js/editor.js"></script>
@@ -44,24 +44,25 @@
             <div class="pane-group">
               <!-- <webview src="http://localhost:9944/notebooks/Data-notebook.ipynb" style="width: 100%"></webview> -->
                 <div class="pane">
-                  <div style="height: 50%; width: 100%">
+                  <div style="height: 100%; width: 100%">
                     <div class="editor" id="editor" style="border: 1px solid #ddd"></div>
                   </div>
-                  <div style="height: 50%; width: 100%">
-                    <ul id="pyPrint">
-                      <li></li>
-                    </ul>
-                  </div>
+
                 </div>
                 <div class="pane pane-one-third">
-                  <table id="table_id1" class="display" style="width: 100%">
+                  <div style="height: 100%; width: 98%; overflow-y:scroll;">
+                    <ul id="pyPrint" style="list-style-type: none; padding-left: 15px;">
+                      <li style="text-align: center;"><h5>print statements</h5></li>
+                    </ul>
+                  </div>
+                  <!-- <table id="table_id1" class="display" style="width: 100%">
                     <thead>
                         <tr>
                             <th>X</th>
                             <th>Y</th>
                         </tr>
                     </thead>
-                  </table>
+                  </table> -->
                 </div>
             </div>
         </div>
@@ -74,21 +75,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.4.0/intro.min.js"></script>
     <script>
       var $  = require( 'jquery' );
-      const exec = require('child_process').exec;
+      // const exec = require('child_process').exec;
       // $(document).ready(function() { exec('cd app/py/ && jupyter notebook --port 9944 --no-browser && jupyter notebook list') });
       //   const webview = document.querySelector('webview');
       //   webview.reload();
       // })
-      var dt = require( 'datatables.net' )();
-      $(document).ready(function() {
-          // $('#table_id1').DataTable( {
-          //     "ajax": "http://localhost:6431/whatever",
-          //     "columns": [
-          //         { "data": "x" },
-          //         { "data": "y" },
-          //     ]
-          // } );
-      } );
+      // var dt = require( 'datatables.net' )();
+      // $(document).ready(function() {
+      //     $('#table_id1').DataTable( {
+      //         "ajax": "http://localhost:6431/data",
+      //         "columns": [
+      //             { data: "x" },
+      //             { data: "y" },
+      //         ]
+      //     } );
+      // } );
     </script>
     <script>
     //var path = require('path');
