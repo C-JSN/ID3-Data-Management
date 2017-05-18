@@ -16,13 +16,8 @@
     app.use(express.static(publicPath));
 
     app.post('/fileName', (req, res, next) => {
-      var pyshell = new PythonShell('py/main.py', { scriptPath: publicPath } );
+      var pyshell = new PythonShell('py/parser.py', { scriptPath: publicPath } );
       pyshell.send(req.body.url);
-      pyshell.on('message', function (message) {
-
-        console.log(message)
-
-      });
       pyshell.end(function (err) {
         if (err) throw err;
         console.log('finished');
@@ -30,13 +25,26 @@
       res.end();
     });
 
+    // app.get('/data', (req, res) => {
+    //   var file = fs.readFileSync('app/js/data.js', 'utf8');
+    //   console.log(file);
+    //   res.json(file);
+    // })
+
     app.get('/pyPrint', (req, res) => {
       PythonShell.run('py/processing.py', { scriptPath: publicPath }, function (err, result) {
         if (err) throw err;
         var send = [];
-        for(let i = 0; i < result.length; i += 1) {
-          send.push({value: result[i]});
+        for(let i = 0; i < result.length - 1; i += 1) {
+          send.push(result[i]);
         }
+
+        fs.writeFile("app/js/data.js", result[result.length - 1], function(err) {
+          if(err) {
+              return console.log(err);
+          }
+          console.log("The file was saved!");
+        });
         res.json(JSON.stringify(send));
       });
     });
